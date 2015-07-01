@@ -34,6 +34,7 @@
 				</tr>
 				</thead>
 				<tbody>
+				{% for category in categories %}
 				<tr>
 					<td>
 						<div class="btn-group">
@@ -41,61 +42,38 @@
 								<span class="fa fa-bars"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
-								<li><a href="#"><i class="fa fa-trash-o"></i> Eliminar</a></li>
+								<li><a href="/admin/categories/{{category.id}}"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
+								<li><a href="#delete/{{category.id}}" data-id="{{category.id}}"><i class="fa fa-trash-o"></i> Eliminar</a></li>
 							</ul>
 						</div>
 					</td>
-					<td>Alimentos</td>
-					<td>Alimentos y comida</td>
+					<td>{{category.name}}</td>
+					<td>{{category.description}}</td>
 				</tr>
-				<tr>
-					<td>
-						<div class="btn-group">
-							<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
-								<span class="fa fa-bars"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
-								<li><a href="#"><i class="fa fa-trash-o"></i> Eliminar</a></li>
-							</ul>
-						</div>
-					</td>
-					<td>Bebidas</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>
-						<div class="btn-group">
-							<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
-								<span class="fa fa-bars"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
-								<li><a href="#"><i class="fa fa-trash-o"></i> Eliminar</a></li>
-							</ul>
-						</div>
-					</td>
-					<td>Ropa</td>
-					<td>Ropa y accesorios</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="btn-group">
-							<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
-								<span class="fa fa-bars"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
-								<li><a href="#"><i class="fa fa-trash-o"></i> Eliminar</a></li>
-							</ul>
-						</div>
-					</td>
-					<td>Electrodomésticos</td>
-					<td>Artefactos para cocina</td>
-				</tr>
+				{% endfor %}
 				</tbody>
 			</table>
 		</div>
 	</div>
+{% endblock %}
+
+{% block script %}
+	<script>
+		$(document).ready(function(){
+			$("a[href^=#delete]").click(function(e){
+				var id = $(this).attr('data-id');
+				var row = $(this).parents("tr");
+				$.ajax({
+					url: '/admin/categories/' + id,
+					method: 'DELETE',
+					statusCode: {
+						204: function() {
+							row.remove();
+						}
+					}
+				});
+				e.preventDefault();
+			});
+		});
+	</script>
 {% endblock %}
