@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+
+{% block heading %}
+	<span class="fa fa-tag"></span> Categorías
+{% endblock %}
+
+{% block actions %}
+	<div class="col-md-10">
+		<ol class="breadcrumb">
+			<li>
+				<i class="fa fa-home"></i> <a href="/admin">Inicio</a>
+			</li>
+			<li class="active">
+				<i class="fa fa-tag"></i> Categorías
+			</li>
+		</ol>
+	</div>
+	<div class="col-md-2">
+		<a href="/admin/categories/create" class="btn btn-block btn-primary">
+			<span class="fa fa-plus"></span> Nueva categoría
+		</a>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="col-md-12">
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover">
+				<thead>
+				<tr>
+					<th style="width: 30px;"></th>
+					<th>Nombre</th>
+					<th>Descripción</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>
+						<div class="btn-group">
+							<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+								<span class="fa fa-bars"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="#"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
+								<li><a href="#"><i class="fa fa-trash-o"></i> Eliminar</a></li>
+							</ul>
+						</div>
+					</td>
+					<td>Alimentos</td>
+					<td>Alimentos y comida</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="btn-group">
+							<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+								<span class="fa fa-bars"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="#"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
+								<li><a href="#"><i class="fa fa-trash-o"></i> Eliminar</a></li>
+							</ul>
+						</div>
+					</td>
+					<td>Bebidas</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="btn-group">
+							<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+								<span class="fa fa-bars"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="#"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
+								<li><a href="#"><i class="fa fa-trash-o"></i> Eliminar</a></li>
+							</ul>
+						</div>
+					</td>
+					<td>Ropa</td>
+					<td>Ropa y accesorios</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="btn-group">
+							<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+								<span class="fa fa-bars"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="#"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
+								<li><a href="#"><i class="fa fa-trash-o"></i> Eliminar</a></li>
+							</ul>
+						</div>
+					</td>
+					<td>Electrodomésticos</td>
+					<td>Artefactos para cocina</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

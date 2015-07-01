@@ -9,6 +9,7 @@ var swig = require('swig');
 // declaración de rutas
 var shop = require('./routes/shop');
 var users = require('./routes/users');
+var admin = require('./routes/admin');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // vinculando rutas a urls
 app.use('/', shop);
 app.use('/users', users);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
