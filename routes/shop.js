@@ -2,19 +2,29 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
+// cargar las categorías para todas las rutas
+var categories = [];
+router.all('*', function(req, res, next){
+	var Category = models.Category;
+	Category.all({order: 'name'}).then( function(c) {
+		categories = c;
+		next();
+	});
+});
+
 /* GET pagina principal */
 router.get('/', function(req, res, next) {
-	res.render('shop/index');
+	res.render('shop/index', { categories: categories });
 });
 
 /* GET categoria */
-router.get('/category', function(req, res, next) {
-	res.render('shop/category');
+router.get('/category/:id', function(req, res, next) {
+	res.render('shop/category', { categories: categories });
 });
 
 /* GET producto */
 router.get('/product', function(req, res, next) {
-	res.render('shop/product');
+	res.render('shop/product', { categories: categories });
 });
 
 /* GET show categories test */
