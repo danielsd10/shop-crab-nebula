@@ -78,7 +78,17 @@ router.get('/products/create', function(req, res, next) {
 		res.render('admin/products-edit', { categories: categories });
 	});
 });
-// guardar productos
+// formulario de edición
+router.get('/products/:id', function(req, res, next) {
+	var Product = models.Product;
+	var Category = models.Category;
+	Product.findById(req.params.id).then(function(product){
+		Category.all().then(function(categories){
+			res.render('admin/products-edit', { product: product, categories: categories });
+		});
+	});
+});
+// guardar nuevo producto
 router.post('/products', function(req, res, next) {
 	var Product = models.Product;
 	Product.build({
@@ -89,6 +99,29 @@ router.post('/products', function(req, res, next) {
 		image: req.body.image
 	}).save().then(function(){
 		res.redirect('/admin/products');
+	});
+});
+// guardar producto existente
+router.post('/products/:id', function(req, res, next) {
+	var Product = models.Product;
+	Product.findById(req.params.id).then( function(product) {
+		product.name = req.body.name;
+		product.category_id = req.body.category_id;
+		product.price = req.body.price;
+		product.description = req.body.description;
+		product.image = req.body.image;
+		product.save().then(function () {
+			res.redirect('/admin/products');
+		});
+	});
+});
+// eliminar producto
+router.delete('/products/:id', function(req, res, next) {
+	var Product = models.Product;
+	Product.findById(req.params.id).then(function(product) {
+		product.destroy().then(function () {
+			res.status(204).end();
+		});
 	});
 });
 

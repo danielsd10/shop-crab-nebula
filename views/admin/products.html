@@ -32,7 +32,8 @@
 					<th>Nombre</th>
 					<th>Categoría</th>
 					<th>Precio</th>
-					<th>Fecha de registro</th>
+					<th>Registrado</th>
+					<th>Modificado</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -44,8 +45,8 @@
 								<span class="fa fa-bars"></span>
 							</button>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
-								<li><a href="#"><i class="fa fa-trash-o"></i> Eliminar</a></li>
+								<li><a href="/admin/products/{{product.id}}"><i class="fa fa-pencil-square-o"></i> Editar</a></li>
+								<li><a href="#delete/{{product.id}}" data-id="{{product.id}}"><i class="fa fa-trash-o"></i> Eliminar</a></li>
 							</ul>
 						</div>
 					</td>
@@ -53,10 +54,32 @@
 					<td>{{product.category.name}}</td>
 					<td class="text-right">{{product.price|decimal}}</td>
 					<td class="text-center">{{product.created_at|date('Y-m-d h:i:s', 300)}}</td>
+					<td class="text-center">{{product.updated_at|date('Y-m-d h:i:s', 300)}}</td>
 				</tr>
 				{% endfor %}
 				</tbody>
 			</table>
 		</div>
 	</div>
+{% endblock %}
+
+{% block script %}
+<script>
+	$(document).ready(function(){
+		$("a[href^=#delete]").click(function(e){
+			var id = $(this).attr('data-id');
+			var row = $(this).parents("tr");
+			$.ajax({
+				url: '/admin/products/' + id,
+				method: 'DELETE',
+				statusCode: {
+					204: function() {
+						row.remove();
+					}
+				}
+			});
+			e.preventDefault();
+		});
+	});
+</script>
 {% endblock %}
