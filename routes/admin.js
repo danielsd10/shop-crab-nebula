@@ -62,9 +62,34 @@ router.delete('/categories/:id', function(req, res, next) {
 	});
 });
 
-/* GET producto */
+/* productos */
+
+// listar productos
 router.get('/products', function(req, res, next) {
-	res.render('admin/products');
+	var Product = models.Product;
+	Product.all({ include: { all: true } }).then(function(products){
+		res.render('admin/products', { products: products });
+	});
+});
+// formulario de registro
+router.get('/products/create', function(req, res, next) {
+	var Category = models.Category;
+	Category.all().then( function(categories) {
+		res.render('admin/products-edit', { categories: categories });
+	});
+});
+// guardar productos
+router.post('/products', function(req, res, next) {
+	var Product = models.Product;
+	Product.build({
+		name: req.body.name,
+		category_id: req.body.category_id,
+		price: req.body.price,
+		description: req.body.description,
+		image: req.body.image
+	}).save().then(function(){
+		res.redirect('/admin/products');
+	});
 });
 
 module.exports = router;
