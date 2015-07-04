@@ -51,8 +51,8 @@
 					</td>
 					<td>{{product.name}}</td>
 					<td>{{product.category.name}}</td>
-					<td class="text-right">{{product.price}}</td>
-					<td class="text-center">{{product.created_at.toLocaleDateString()}}</td>
+					<td class="text-right">{{product.price|decimal}}</td>
+					<td class="text-center">{{product.created_at|date('Y-m-d h:i:s', 300)}}</td>
 				</tr>
 				{% endfor %}
 				</tbody>
