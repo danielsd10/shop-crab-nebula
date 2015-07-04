@@ -4,17 +4,17 @@ var models = require('../models');
 
 /* GET pagina principal */
 router.get('/', function(req, res, next) {
-	res.render('index');
+	res.render('shop/index');
 });
 
 /* GET categoria */
 router.get('/category', function(req, res, next) {
-	res.render('category');
+	res.render('shop/category');
 });
 
 /* GET producto */
 router.get('/product', function(req, res, next) {
-	res.render('product');
+	res.render('shop/product');
 });
 
 /* GET show categories test */
