@@ -14,7 +14,10 @@ router.all('*', function(req, res, next){
 
 /* GET pagina principal */
 router.get('/', function(req, res, next) {
-	res.render('shop/index', { categories: categories });
+	var Product = models.Product;
+	Product.all({order: 'name'}).then( function(products){
+		res.render('shop/index', { categories: categories, products: products });
+	});
 });
 
 /* nosotros (about) */
