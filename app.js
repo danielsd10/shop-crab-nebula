@@ -32,6 +32,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// variables globales para plantillas
+app.locals.title = "e-Commerce";
+
 // vinculando rutas a urls
 app.use('/', shop);
 app.use('/users', users);

@@ -1,6 +1,10 @@
 {% extends 'layout.html' %}
 
-{% block title %}Producto - e-Commerce{% endblock %}
+{% block title %}Producto - {% parent %}{% endblock %}
+
+{% block side-content %}
+	{% include "categories-list.html" %}
+{% endblock %}
 
 {% block content %}
 	<div class="thumbnail">

@@ -17,6 +17,19 @@ router.get('/', function(req, res, next) {
 	res.render('shop/index', { categories: categories });
 });
 
+/* nosotros (about) */
+router.get('/about', function(req, res, next) {
+	res.render('shop/about');
+});
+/* servicios (services) */
+router.get('/services', function(req, res, next) {
+	res.render('shop/services');
+});
+/* contacto (contact) */
+router.get('/contact', function(req, res, next) {
+	res.render('shop/contact');
+});
+
 /* GET categoria */
 router.get('/category/:id', function(req, res, next) {
 	res.render('shop/category', { categories: categories });

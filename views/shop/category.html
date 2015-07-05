@@ -1,6 +1,10 @@
 {% extends 'layout.html' %}
 
-{% block title %}Categoría - e-Commerce{% endblock %}
+{% block title %}Categoría - {% parent %}{% endblock %}
+
+{% block side-content %}
+	{% include "categories-list.html" %}
+{% endblock %}
 
 {% block content %}
 	<div class="row">
